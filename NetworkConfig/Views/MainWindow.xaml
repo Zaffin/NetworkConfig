@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetworkConfig.Views"
+        xmlns:rules="clr-namespace:NetworkConfig.ValidationRules"
         xmlns:resources="clr-namespace:NetworkConfig.Resources"
         mc:Ignorable="d"
         Title="{x:Static resources:UIResources.MainWindowTitle}" 
@@ -11,6 +12,7 @@
         Width="500"
         MinHeight="500"
         MinWidth="300">
+     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -80,9 +82,17 @@
                     <TextBox Height="27"
                              DockPanel.Dock="Left"
                              VerticalContentAlignment="Center"
-                             Text="{Binding NewSharedDirectory, 
-                                            Mode=TwoWay, 
-                                            UpdateSourceTrigger=PropertyChanged}"/>
+                             Validation.ErrorTemplate="{StaticResource validationTemplate}">
+
+                        <TextBox.Text>
+                            <Binding Path="NewSharedDirectory" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <rules:DirectoryExistsRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+            
+                    </TextBox>
                 </DockPanel>
 
                 <Button Height="27"
