@@ -27,7 +27,7 @@ namespace NetworkConfig.Views
         {
             InitializeComponent();
 
-            DataContext = new MainWindowViewModel(new RegistryService());
+            DataContext = new MainWindowViewModel(new RegistryService(), new FileService());
         }
     }
 }

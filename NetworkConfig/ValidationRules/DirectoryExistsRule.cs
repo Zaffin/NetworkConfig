@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using NetworkConfig.Resources;
+
 namespace NetworkConfig.ValidationRules
 {
     public class DirectoryExistsRule : ValidationRule
@@ -23,7 +25,7 @@ namespace NetworkConfig.ValidationRules
             }
             else
             {
-                return new ValidationResult(false, $"The selected directory does not exist");
+                return new ValidationResult(false, UIResources.DirectoryNotFound);
             }                        
         }
     }

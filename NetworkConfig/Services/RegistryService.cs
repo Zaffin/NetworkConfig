@@ -1,5 +1,4 @@
-﻿using NetworkConfig.DataTypes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,7 +6,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using System.Windows;
 
+using NetworkConfig.DataTypes;
 
 namespace NetworkConfig.Services
 {
@@ -43,7 +44,18 @@ namespace NetworkConfig.Services
 
         public void SetSharedDirectoryKey(string selectedVersionKey, string updatedDirectory)
         {
-            Registry.SetValue(selectedVersionKey, "SharedDir", updatedDirectory);
+            try
+            {
+                Registry.SetValue(selectedVersionKey, "SharedDir", updatedDirectory);
+            }
+            catch (Exception ex)
+            {
+
+                var error = $"{ex.Message}\n" +
+                            $"{ex.InnerException?.Message}";
+
+                MessageBox.Show(error, "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

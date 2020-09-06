@@ -70,6 +70,15 @@ namespace NetworkConfig.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected directory does not exist.
+        /// </summary>
+        public static string DirectoryNotFound {
+            get {
+                return ResourceManager.GetString("DirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network Configurator.
         /// </summary>
         public static string MainWindowTitle {

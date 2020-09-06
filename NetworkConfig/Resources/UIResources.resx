@@ -120,6 +120,9 @@
   <data name="CurrentSharedDirectoryLabel" xml:space="preserve">
     <value>Current shared directory:</value>
   </data>
+  <data name="DirectoryNotFound" xml:space="preserve">
+    <value>The selected directory does not exist</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Network Configurator</value>
   </data>

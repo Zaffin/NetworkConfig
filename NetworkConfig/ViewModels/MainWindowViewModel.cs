@@ -19,6 +19,8 @@ namespace NetworkConfig.ViewModels
         #region Private Fields
 
         private readonly IRegistryService registryService;
+        private readonly IFileService fileService;
+
 
         private ObservableCollection<VersionInformation> versions;
 
@@ -32,9 +34,10 @@ namespace NetworkConfig.ViewModels
 
         #region Construction
 
-        public MainWindowViewModel(IRegistryService registryService)
+        public MainWindowViewModel(IRegistryService registryService, IFileService fileService)
         {
             this.registryService = registryService;
+            this.fileService = fileService;
 
             BrowseForFolderCommand = new DelegateCommand(OnBrowseForFolderCommand);
             UpdateRegistryCommand = new DelegateCommand(OnUpdateRegistryCommand);
@@ -110,13 +113,14 @@ namespace NetworkConfig.ViewModels
 
         private void OnBrowseForFolderCommand(object parameter)
         {
-
+            (_, NewSharedDirectory) = fileService.SelectFolder("");
         }
 
         private void OnUpdateRegistryCommand(object parameter)
         {
             registryService.SetSharedDirectoryKey(selectedVersion.RegistryKey, NewSharedDirectory);
             SharedDirectory = registryService.GetCurrentSharedDirectory(selectedVersion.RegistryKey);
+
             NewSharedDirectory = string.Empty;
         }
 
