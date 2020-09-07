@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using System.Windows;
 
 using NetworkConfig.DataTypes;
+using NetworkConfig.Properties;
 
 namespace NetworkConfig.Services
 {
@@ -23,9 +24,9 @@ namespace NetworkConfig.Services
         {
             var versions = new ObservableCollection<VersionInformation>();
 
-            var subKeys = Registry.CurrentUser.OpenSubKey("Software\\CNC Software, Inc.");
+            var subKeys = Registry.CurrentUser.OpenSubKey(Settings.Default.VersionSubKey);
 
-            var regexPattern = @"^Mastercam\W*(?>(?>X\d?)|(?>\d{4}))";
+            var regexPattern = Settings.Default.VersionRegex;
 
             foreach (var subKeyName in subKeys.GetSubKeyNames())
             {
