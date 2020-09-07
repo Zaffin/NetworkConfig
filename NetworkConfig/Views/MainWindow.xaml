@@ -10,26 +10,28 @@
         Title="{x:Static resources:UIResources.MainWindowTitle}" 
         Height="700" 
         Width="500"
-        MinHeight="500"
-        MinWidth="300">
+        MinHeight="600"
+        MinWidth="400">
 
     <Window.Resources>
         <ControlTemplate x:Key="validationTemplate">
-            <Border BorderBrush="OrangeRed" 
-                    BorderThickness="2">
-                <Grid>
-                    <AdornedElementPlaceholder/>
+
+            <DockPanel>
                     <TextBlock Text="{Binding [0].ErrorContent}" 
                                Foreground="OrangeRed"
-                               Background="White"
                                VerticalAlignment="Center" 
-                               HorizontalAlignment="Right"
-                               Margin="0,0,5,0"/>
-                </Grid>
-            </Border>
+                               HorizontalAlignment="Left"
+                               DockPanel.Dock="Bottom"/>
+                
+                <Border BorderBrush="OrangeRed" 
+                    BorderThickness="2">
+                    <AdornedElementPlaceholder/>
+                </Border>
+            </DockPanel>
+
         </ControlTemplate>
     </Window.Resources>
-
+ 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -100,13 +102,14 @@
                              DockPanel.Dock="Left"
                              VerticalContentAlignment="Center"
                              Validation.ErrorTemplate="{StaticResource validationTemplate}">
-
+                                
                         <TextBox.Text>
                             <Binding Path="NewSharedDirectory" 
-                                     ValidatesOnDataErrors="True"
-                                     UpdateSourceTrigger="PropertyChanged">
+                                     UpdateSourceTrigger="PropertyChanged"
+                                     Mode="TwoWay"
+                                     ValidatesOnDataErrors="True">
                                 <Binding.ValidationRules>
-                                    <rules:DirectoryExistsRule/>
+                                    <rules:NewDirectoryExistsRule ValidationStep="UpdatedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>

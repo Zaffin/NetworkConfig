@@ -129,6 +129,9 @@
   <data name="NewSharedDirectoryLabel" xml:space="preserve">
     <value>New shared directory</value>
   </data>
+  <data name="SelectNewSharedDirectory" xml:space="preserve">
+    <value>Select a new shared directory</value>
+  </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>Version</value>
   </data>

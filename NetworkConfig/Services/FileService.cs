@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ namespace NetworkConfig.Services
 {
     public class FileService : IFileService
     {
+        public bool IsDirectoyOnDisk(string path)
+        {
+            return Directory.Exists(path);
+        }
+
         public (bool isSuccess, string path) SelectFolder(string description)
         {
             var selectedFolderDialog = new VistaFolderBrowserDialog()

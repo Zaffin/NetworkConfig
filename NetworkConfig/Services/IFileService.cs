@@ -8,6 +8,8 @@ namespace NetworkConfig.Services
 {
     public interface IFileService
     {
-         (bool isSuccess, string path) SelectFolder(string description);
+        bool IsDirectoyOnDisk(string path);
+
+        (bool isSuccess, string path) SelectFolder(string description);
     }
 }

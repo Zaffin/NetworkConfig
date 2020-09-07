@@ -97,6 +97,15 @@ namespace NetworkConfig.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a new shared directory.
+        /// </summary>
+        public static string SelectNewSharedDirectory {
+            get {
+                return ResourceManager.GetString("SelectNewSharedDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string VersionLabel {

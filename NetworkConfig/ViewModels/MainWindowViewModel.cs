@@ -9,8 +9,9 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 using NetworkConfig.Services;
-using NetworkConfig.DataTypes;
 using NetworkConfig.Commands;
+using NetworkConfig.DataTypes;
+using NetworkConfig.Resources;
 
 namespace NetworkConfig.ViewModels
 {
@@ -19,8 +20,8 @@ namespace NetworkConfig.ViewModels
         #region Private Fields
 
         private readonly IRegistryService registryService;
-        private readonly IFileService fileService;
 
+        private readonly IFileService fileService;
 
         private ObservableCollection<VersionInformation> versions;
 
@@ -28,7 +29,7 @@ namespace NetworkConfig.ViewModels
 
         private string sharedDirectory;
 
-        private string newSharedDirectory;
+        private string newSharedDirectory = string.Empty;
 
         #endregion
 
@@ -40,7 +41,7 @@ namespace NetworkConfig.ViewModels
             this.fileService = fileService;
 
             BrowseForFolderCommand = new DelegateCommand(OnBrowseForFolderCommand);
-            UpdateRegistryCommand = new DelegateCommand(OnUpdateRegistryCommand);
+            UpdateRegistryCommand = new DelegateCommand(OnUpdateRegistryCommand, new Predicate<object>(o => fileService.IsDirectoyOnDisk(NewSharedDirectory)));
 
             Versions = registryService.GetVersions();
             if (Versions.Any())
@@ -54,9 +55,9 @@ namespace NetworkConfig.ViewModels
 
         #region Commands
 
-        public ICommand BrowseForFolderCommand { get; }
+        public DelegateCommand BrowseForFolderCommand { get; }
 
-        public ICommand UpdateRegistryCommand { get; }
+        public DelegateCommand UpdateRegistryCommand { get; }
 
         #endregion
 
@@ -103,6 +104,7 @@ namespace NetworkConfig.ViewModels
             set
             {
                 this.newSharedDirectory = value;
+                UpdateRegistryCommand.RaiseCanExecuteChanged();
                 OnPropertyChanged();
             }
         }
@@ -113,7 +115,7 @@ namespace NetworkConfig.ViewModels
 
         private void OnBrowseForFolderCommand(object parameter)
         {
-            (_, NewSharedDirectory) = fileService.SelectFolder("");
+            (_, NewSharedDirectory) = fileService.SelectFolder(UIResources.SelectNewSharedDirectory);
         }
 
         private void OnUpdateRegistryCommand(object parameter)
