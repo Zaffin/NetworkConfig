@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Installer/NetworkConfigurator.aip
+/Installer/Output/NetworkConfiguratorSetup1_0.zip
+/Installer/Icon

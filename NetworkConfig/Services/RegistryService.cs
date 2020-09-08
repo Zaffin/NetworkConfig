@@ -10,6 +10,7 @@ using System.Windows;
 
 using NetworkConfig.DataTypes;
 using NetworkConfig.Properties;
+using NetworkConfig.Resources;
 
 namespace NetworkConfig.Services
 {
@@ -25,6 +26,12 @@ namespace NetworkConfig.Services
             var versions = new ObservableCollection<VersionInformation>();
 
             var subKeys = Registry.CurrentUser.OpenSubKey(Settings.Default.VersionSubKey);
+
+            if (subKeys == null)
+            {
+                MessageBox.Show(UIResources.MastercamNotInstalledError, UIResources.ErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                return versions;
+            }
 
             var regexPattern = Settings.Default.VersionRegex;
 
@@ -55,7 +62,7 @@ namespace NetworkConfig.Services
                 var error = $"{ex.Message}\n" +
                             $"{ex.InnerException?.Message}";
 
-                MessageBox.Show(error, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(error, UIResources.ErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

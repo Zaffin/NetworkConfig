@@ -79,11 +79,29 @@ namespace NetworkConfig.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network Configurator.
         /// </summary>
         public static string MainWindowTitle {
             get {
                 return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Mastercam installations found..
+        /// </summary>
+        public static string MastercamNotInstalledError {
+            get {
+                return ResourceManager.GetString("MastercamNotInstalledError", resourceCulture);
             }
         }
         

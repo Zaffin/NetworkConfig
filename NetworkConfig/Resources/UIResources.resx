@@ -123,8 +123,14 @@
   <data name="DirectoryNotFound" xml:space="preserve">
     <value>The selected directory does not exist</value>
   </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Network Configurator</value>
+  </data>
+  <data name="MastercamNotInstalledError" xml:space="preserve">
+    <value>No Mastercam installations found.</value>
   </data>
   <data name="NewSharedDirectoryLabel" xml:space="preserve">
     <value>New shared directory</value>
